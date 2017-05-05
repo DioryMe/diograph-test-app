@@ -1,10 +1,10 @@
 {
-  "name": "ninetynine-bottles",
-  "version": "1.0.0",
+  "name": "typescript-template",
+  "version": "0.0.1",
   "description": "",
   "main": "app/index.ts",
   "scripts": {
-    "start": "node dist/bundle.js",
+    "start": "webpack && node dist/bundle.js",
     "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
   "author": "",
@@ -13,6 +13,9 @@
     "ts-loader": "*",
     "typescript": "*",
     "webpack": "*",
-    "jasmine": "*"
+    "jasmine": "*",
+    "@types/jasmine": "*",
+    "@types/node": "*",
+    "selenium-webdriver": "*"
   }
 }

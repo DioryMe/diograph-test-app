@@ -2,8 +2,13 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
-        "sourceMap": true,
+        "sourceMap": false,
         "allowJs": true,
         "outDir": "dist"
-    }
+    },
+    "exclude": [
+      "webpack.config.js",
+      "node_modules",
+      "dist"
+    ]
 }

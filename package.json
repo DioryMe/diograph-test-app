@@ -1,10 +1,10 @@
 {
-  "name": "typescript-template",
+  "name": "diograph-test-app",
   "version": "0.0.1",
   "description": "",
-  "main": "app/index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "webpack && node dist/bundle.js",
+    "start": "tsc && node dist/index.js",
     "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
   "author": "",
@@ -16,6 +16,8 @@
     "jasmine": "*",
     "@types/jasmine": "*",
     "@types/node": "*",
-    "selenium-webdriver": "*"
+    "selenium-webdriver": "*",
+    "diograph-store": "../diograph-store",
+    "diograph-authentication": "../diograph-authentication"
   }
 }

@@ -19,5 +19,10 @@
     "selenium-webdriver": "*",
     "diograph-store": "*",
     "diograph-authentication": "*"
+  },
+  "dependencies": {
+    "diory-react-components": "^1.0.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   }
 }

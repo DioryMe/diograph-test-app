@@ -4,7 +4,8 @@
         "target": "es5",
         "sourceMap": false,
         "allowJs": true,
-        "outDir": "dist"
+        "outDir": "dist",
+        "jsx": "react"
     },
     "exclude": [
       "webpack.config.js",

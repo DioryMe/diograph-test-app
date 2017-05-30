@@ -21,7 +21,10 @@ try {
     }
 
     ReactDOM.render(
-      <Diory { ...diory } />,
+      <div>
+        <h1>{ dioryData.name }</h1>
+        <Diory { ...diory } />
+      </div>,
       document.getElementById('app')
     );
 

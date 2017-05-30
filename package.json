@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc && node dist/index.js",
-    "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json"
+    "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "e2e": "tsc && webpack && jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
   "author": "",
   "license": "ISC",

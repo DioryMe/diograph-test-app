@@ -5,6 +5,61 @@
 </head>
 <body style="margin: 0">
 
+<script
+  src="//cdnjs.cloudflare.com/ajax/libs/document-register-element/1.5.0/document-register-element.js"
+>/* Document-register-element */</script>
+
+<script>
+class DiographLogin extends HTMLElement {
+
+  // Fires when an instance of the element is created.
+  createdCallback() {
+    this.innerHTML =  `
+      <style>
+        input {
+          line-height: 24px;
+          margin-top: 10px;
+        }
+        #logout, #login {
+          cursor: pointer;
+        }
+        #container2 {
+          display: none
+        }
+      </style>
+      <div id="container">
+        Username: <input>
+        Password: <input>
+        <button id="login">Login</button>
+      </div>
+      <div id="container2">
+        <div>
+          Logged in as jvalanen &nbsp;&nbsp;
+        </div>
+        <div id="logout">
+          Logout
+        </div>
+      </div>
+    `;
+
+    document.getElementById("login").addEventListener('click', () => {
+      document.getElementById("container").style.display="none"
+      document.getElementById("container2").style.display="block"
+    });
+
+    document.getElementById("logout").addEventListener('click', () => {
+      document.getElementById("container").style.display="block"
+      document.getElementById("container2").style.display="none"
+    });
+
+  };
+
+}
+
+document.registerElement('diograph-login', DiographLogin);
+
+</script>
+
 <diograph-login></diograph-login>
 
 <!-- the test app is rendered into this div -->

@@ -18,8 +18,8 @@
     "@types/jasmine": "*",
     "@types/node": "*",
     "selenium-webdriver": "*",
-    "diograph-store": "../diograph-store",
-    "diograph-authentication": "../diograph-authentication"
+    "diograph-store": "*",
+    "diograph-authentication": "*"
   },
   "dependencies": {
     "diory-react-components": "^1.0.0",

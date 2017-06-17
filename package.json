@@ -18,7 +18,7 @@
     "@types/jasmine": "*",
     "@types/node": "*",
     "selenium-webdriver": "*",
-    "diograph-store": "*",
+    "diograph-store": "../diograph-store",
     "diograph-authentication": "../diograph-authentication"
   },
   "dependencies": {

@@ -4,11 +4,12 @@ import { Diory, DioryGrid } from 'diory-react-components'
 import { DiographStore } from "diograph-store"
 import { DiographAuthentication } from "diograph-authentication"
 
-// DiographStore.setAuthToken("test-token")
 DiographStore.setAuthToken(DiographAuthentication.token);
 
 try {
-  DiographStore.get("5691").then((dioryData) => {
+  DiographStore.getAll().then((dioryData) => {
+    if (dioryData.length < 1) { return }
+    dioryData = dioryData[0]
 
     const diory = {
       text: dioryData.name,

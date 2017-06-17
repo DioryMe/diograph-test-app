@@ -7,33 +7,21 @@ import { DiographAuthentication } from "diograph-authentication"
 render()
 
 document.getElementById("diograph-save-button").addEventListener('click', () => {
-  console.log("save")
   render()
 })
 
 document.getElementById("logout").addEventListener('click', () => {
-  console.log("logout")
-  render()
+  clear()
 })
 
 function render() {
-
-  console.log(DiographAuthentication.token)
   DiographStore.setAuthToken(DiographAuthentication.token);
 
   try {
     DiographStore.getAll().then((dioryData) => {
-
-      console.log("clear")
-      ReactDOM.render(
-        <div></div>,
-        document.getElementById('app')
-      );
-
-      if (dioryData.length < 1) { return }
+      if (dioryData.length < 1) { return; }
 
       dioryData = dioryData[0]
-      console.log(dioryData)
 
       const diory = {
         text: dioryData.name,
@@ -45,7 +33,6 @@ function render() {
         }
       }
 
-      console.log("render");
       ReactDOM.render(
         <div>
           <h1>{ dioryData.name }</h1>
@@ -58,5 +45,12 @@ function render() {
   } catch(e) {
     console.log(e)
   }
+}
+
+function clear() {
+  ReactDOM.render(
+    <div><p>No diories to show.</p></div>,
+    document.getElementById('app')
+  );
 }
 

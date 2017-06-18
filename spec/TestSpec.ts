@@ -1,10 +1,10 @@
-import * as selenium from 'selenium-webdriver';
+import { By, Builder, Capabilities, until } from 'selenium-webdriver';
 
 describe('Diory Test App', function() {
 
     beforeEach(function(done) {
-        this.driver = new selenium.Builder().
-            withCapabilities(selenium.Capabilities.chrome()).
+        this.driver = new Builder().
+            withCapabilities(Capabilities.chrome()).
             build();
 
         this.driver.get('http://localhost:8080/app/index.html').then(done);
@@ -15,7 +15,7 @@ describe('Diory Test App', function() {
     });
 
     it('Home page renders', function(done) {
-        var element = this.driver.findElement(selenium.By.tagName('p'));
+        var element = this.driver.findElement(By.tagName('p'));
         element.getAttribute('innerHTML').then(function(html) {
             expect(html).toContain('No diories to show.');
             done();
@@ -23,46 +23,41 @@ describe('Diory Test App', function() {
     });
 
     it('Successful login and diory shows up', function(done) {
-        let that = this;
-        this.driver.findElement(selenium.By.id("diograph-token-input")).sendKeys("test-token");
-        this.driver.findElement(selenium.By.id("diograph-save-button")).click();
-        setTimeout(function() {
-            var element = that.driver.findElement(selenium.By.tagName('h1'));
+        this.driver.findElement(By.id("diograph-token-input")).sendKeys("test-token");
+        this.driver.findElement(By.id("diograph-save-button")).click();
+        this.driver.wait(until.elementLocated(By.tagName('h1'))).then(element => {
             element.getAttribute('innerHTML').then(function(html) {
                 expect(html).toContain('Test diory');
                 done();
             });
-        }, 1500);
+        });
     });
 
     it('Successful logout and diory disappears', function(done) {
-        let that = this;
         /* Logs in */
-        this.driver.findElement(selenium.By.id("diograph-token-input")).sendKeys("test-token");
-        this.driver.findElement(selenium.By.id("diograph-save-button")).click();
-        setTimeout(function() {
+        this.driver.findElement(By.id("diograph-token-input")).sendKeys("test-token");
+        this.driver.findElement(By.id("diograph-save-button")).click();
+        this.driver.wait(until.elementLocated(By.tagName('h1'))).then(element => {
             /* Finds diory */
-            var element = that.driver.findElement(selenium.By.tagName('h1'));
             element.getAttribute('innerHTML').then(function(html) {
                 expect(html).toContain('Test diory');
             });
             /* Clicks logout */
-            that.driver.findElement(selenium.By.id("logout")).click();
-            setTimeout(function() {
+            this.driver.findElement(By.id("logout")).click();
+            this.driver.wait(until.elementLocated(By.id("diograph-token-input"))).then(inputField => {
                 /* Input field still has test-token */
-                let inputField = that.driver.findElement(selenium.By.id("diograph-token-input"));
                 inputField.getAttribute('value').then(html => {
                     expect(html).toContain("test-token");
                     /* Diory is not shown anymore */
-                    var element = that.driver.findElement(selenium.By.tagName('p'));
+                    var element = this.driver.findElement(By.tagName('p'));
                     element.getAttribute('innerHTML').then(function(html) {
                         expect(html).toContain('No diories to show.');
                         done();
                     });
                 });
 
-            }, 1500);
-        }, 1500);
+            });
+        });
     });
 
 })

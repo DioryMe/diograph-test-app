@@ -6,13 +6,13 @@ import { DiographAuthentication } from "diograph-authentication"
 
 render()
 
-document.getElementById("diograph-save-button").addEventListener('click', () => {
+DiographAuthentication.onLogin = () => {
   render()
-})
+}
 
-document.getElementById("logout").addEventListener('click', () => {
+DiographAuthentication.onLogout = () => {
   clear()
-})
+}
 
 function render() {
   DiographStore.setAuthToken(DiographAuthentication.token);

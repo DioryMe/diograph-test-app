@@ -1,27 +1,9 @@
 # Diograph test app
 
-## Usage
+## Usage / Development
 
 ```
 npm install
-
-npm start
-```
-
-Output:
-```
-Diory {
-  id: '1234',
-  name: 'Test diory',
-  url: 'http://google.com/',
-  type: 'webpage',
-  background: null,
-  date: null }
-```
-
-## Development
-
-```
 webpack
 http-server .
 ```
@@ -38,5 +20,13 @@ rm -r node_modules/diograph-authentication/; npm install; webpack
 ## Tests
 
 ```
-npm run e2e
+npm test
+```
+
+## Deploy
+
+Copy `app/index.html` to `dist/index.html`
+
+```
+surge ./dist
 ```

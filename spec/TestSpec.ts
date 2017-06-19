@@ -47,7 +47,7 @@ describe('Diory Test App', function() {
             this.driver.wait(until.elementLocated(By.id("diograph-token-input"))).then(inputField => {
                 /* Input field still has test-token */
                 inputField.getAttribute('value').then(html => {
-                    expect(html).toContain("test-token");
+                    expect(html).toEqual("");
                     /* Diory is not shown anymore */
                     var element = this.driver.findElement(By.tagName('p'));
                     element.getAttribute('innerHTML').then(function(html) {

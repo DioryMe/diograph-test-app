@@ -25,8 +25,8 @@ npm test
 
 ## Deploy
 
-Copy `app/index.html` to `dist/index.html`
-
 ```
-surge ./dist
+cp app/index.html dist/index.html
+# Change ../dist/bundle.js => bundle.js in index.html
+surge ./dist diory-test-app.surge.sh
 ```

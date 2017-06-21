@@ -60,7 +60,7 @@ describe('Diory Test App', function() {
         });
     });
 
-    fit('Successful login with ?token=test-token, also after refresh', function(done) {
+    it('Successful login with ?token=test-token, also after refresh', function(done) {
         let that = this;
         this.driver.get('http://localhost:8080/app/index.html?token=test-token').then(() => {
             this.driver.wait(until.elementLocated(By.tagName('h1'))).then(element => {
@@ -80,6 +80,20 @@ describe('Diory Test App', function() {
                                 });
                             });
                         });
+                    });
+                });
+            });
+        });
+    });
+
+    xit('User gets changed with ?token=test-token, although already logged in', function(done) {
+        let that = this;
+        this.driver.get('http://localhost:8080/app/index.html?token=test-token').then(() => {
+            this.driver.get('http://localhost:8080/app/index.html?token=other-token').then(() => {
+                this.driver.wait(until.elementLocated(By.tagName('h1'))).then(element => {
+                    /* Finds diory */
+                    element.getAttribute('innerHTML').then(function(html) {
+                        expect(html).toContain('Other diory');
                     });
                 });
             });

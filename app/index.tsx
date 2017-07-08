@@ -5,7 +5,7 @@ import { DiographStore } from "diograph-store"
 import { DiographAuthentication } from "diograph-authentication"
 
 import { DiographSearchCreate } from "diograph-search-create"
-(document as any).registerElement('diograph-search-create', DiographSearchCreate);
+let becauseItMustBeUsedToBeIncludedIntoBundle = DiographSearchCreate;
 
 render()
 

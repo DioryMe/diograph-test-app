@@ -2,9 +2,7 @@
   "name": "diograph-test-app",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node dist/index.js",
     "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "e2e": "tsc && webpack && jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
@@ -19,7 +17,8 @@
     "@types/node": "*",
     "selenium-webdriver": "*",
     "diograph-store": "*",
-    "diograph-authentication": "*"
+    "diograph-authentication": "*",
+    "diograph-search-create": "*"
   },
   "dependencies": {
     "diory-react-components": "^1.0.0",

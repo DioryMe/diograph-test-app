@@ -5,17 +5,10 @@
 ```
 npm install
 webpack
-http-server .
+http-server /dist . -p 4202
 ```
-Then go to: http://localhost:8080/app/index.html
+Then go to: http://localhost:4202/
 
-To use and update a local node_module:
-```
-# Package.json
-"diograph-authentication": "../diograph-authentication"
-# Update
-rm -r node_modules/diograph-authentication/; npm install; webpack
-```
 
 ## Tests
 

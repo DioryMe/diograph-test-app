@@ -7,7 +7,7 @@ describe('Diory Test App', function() {
             withCapabilities(Capabilities.chrome()).
             build();
 
-        this.driver.get('http://localhost:8080/app/index.html').then(done);
+        this.driver.get('http://localhost:4202/').then(done);
     });
 
     afterEach(function(done) {
@@ -27,7 +27,7 @@ describe('Diory Test App', function() {
         this.driver.findElement(By.id("diograph-save-button")).click();
         this.driver.wait(until.elementLocated(By.tagName('h1'))).then(element => {
             element.getAttribute('innerHTML').then(function(html) {
-                expect(html).toContain('Test diory');
+                expect(html).toContain('Old name');
                 done();
             });
         });
@@ -40,7 +40,7 @@ describe('Diory Test App', function() {
         this.driver.wait(until.elementLocated(By.tagName('h1'))).then(element => {
             /* Finds diory */
             element.getAttribute('innerHTML').then(function(html) {
-                expect(html).toContain('Test diory');
+                expect(html).toContain('Old name');
             });
             /* Clicks logout */
             this.driver.findElement(By.id("logout")).click();
@@ -62,17 +62,17 @@ describe('Diory Test App', function() {
 
     it('Successful login with ?token=test-token, also after refresh', function(done) {
         let that = this;
-        this.driver.get('http://localhost:8080/app/index.html?token=test-token').then(() => {
+        this.driver.get('http://localhost:4202/app/index.html?token=test-token').then(() => {
             this.driver.wait(until.elementLocated(By.tagName('h1'))).then(element => {
                 /* Finds diory */
                 element.getAttribute('innerHTML').then(function(html) {
-                    expect(html).toContain('Test diory');
+                    expect(html).toContain('Old name');
                 });
                 /* Shows logout button */
                 that.driver.findElement(By.id('container2')).then(element => {
                     element.getAttribute('style').then(style => {
                         expect(style).toContain("block");
-                        this.driver.get('http://localhost:8080/app/index.html?token=test-token').then(() => {
+                        this.driver.get('http://localhost:4202/app/index.html?token=test-token').then(() => {
                             that.driver.findElement(By.id('container2')).then(element => {
                                 element.getAttribute('style').then(style => {
                                     expect(style).toContain("block");

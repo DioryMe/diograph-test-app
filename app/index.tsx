@@ -21,7 +21,7 @@ function render() {
   DiographStore.setAuthToken(DiographAuthentication.token);
 
   try {
-    DiographStore.getAll().then((dioryData) => {
+    DiographStore.getAllDiories().then((dioryData) => {
       if (dioryData.length < 1) { return; }
 
       dioryData = dioryData[0]

@@ -3,9 +3,7 @@
 ## Usage / Development
 
 ```
-npm install
-webpack
-http-server /dist . -p 4202
+npm start
 ```
 Then go to: http://localhost:4202/
 

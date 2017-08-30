@@ -4,9 +4,6 @@ import { Diory, DioryGrid } from 'diory-react-components'
 import { DiographStore } from "diograph-store"
 import { DiographAuthentication } from "diograph-authentication"
 
-import { DiographSearchCreate } from "diograph-search-create"
-let becauseItMustBeUsedToBeIncludedIntoBundle = DiographSearchCreate;
-
 render()
 
 DiographAuthentication.onLogin = () => {
@@ -38,6 +35,7 @@ function render() {
 
       ReactDOM.render(
         <div>
+          <SearchCreate />
           <h1>{ dioryData.name }</h1>
           <Diory { ...diory } />
         </div>,
@@ -57,3 +55,6 @@ function clear() {
   );
 }
 
+const SearchCreate = () => {
+  return <input />
+}

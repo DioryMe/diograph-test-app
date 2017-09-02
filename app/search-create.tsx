@@ -3,14 +3,23 @@ import * as $ from "jquery";
 import * as Bloodhound from "corejs-typeahead/dist/bloodhound";
 import "corejs-typeahead/dist/typeahead.jquery";
 
-export const SearchCreate = () => {
-  return <div id="search-create">
-          <input id="typeahead" class="typeahead" type="text" placeholder="Search for diories..." />
-          <div id='loading-icon'>
-            <img src='loading.gif' />
-          </div>
-          <div id="search-create__cancel" class='search-create__cancel'>X</div>
+export class SearchCreate extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div id="search-create">
+        <input id="typeahead" className="typeahead" type="text" placeholder="Search for diories..." />
+        <div id='loading-icon'>
+          <img src='loading.gif' />
         </div>
+        <div id="search-create__cancel" className='search-create__cancel'>X</div>
+      </div>
+    )
+  }
+
 }
 
 export function initializeTypeahead() {

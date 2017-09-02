@@ -19,23 +19,22 @@ class App extends React.Component {
   }
 
   loadDiories() {
-    DiographStore.getAllDiories().then((dioryData) => {
-      if (dioryData.length < 1) { return; }
-      dioryData = dioryData[0]
-      const diory = {
-        text: dioryData.name,
+    DiographStore.getAllDiories().then((diories) => {
+      if (diories.length < 1) { return; }
+
+      const gridDiory = this.convertDioryToGridDiory(diories[0])
+
+      const gridDiories = {
+        text: 'This is a grid:',
         image: 'https://gravatar.com/avatar/ff80f8f9bc52f1b79e468a41f2239001',
         styles: {
-          diory: { display: 'inline-block', width: '20em', height: '20em', backgroundColor: 'green', margin: '1em' },
-          text: { fontSize: '2em', fontFamily: 'sans-serif', color: 'white', textAlign: 'center', textShadow: '1px 1px green' },
-          image: { opacity: 0.6, filter: 'blur(5px)' }
-        }
+          text: { fontSize: '2em', fontFamily: 'sans-serif', color: 'white' }
+        },
+        diorys: this.convertDioriesToGridDiories(diories)
       }
-      this.setState({diory: diory})
-      this.setState({diories: {
-        1: diory,
-        2: diory
-      }})
+
+      this.setState({diory: gridDiory})
+      this.setState({diories: gridDiories})
     })
   }
 
@@ -50,6 +49,27 @@ class App extends React.Component {
         <DioryGrid { ...diories } />
       </div>
     )
+  }
+
+  convertDioryToGridDiory(diory) {
+    return {
+      text: diory.name,
+      image: 'https://gravatar.com/avatar/ff80f8f9bc52f1b79e468a41f2239001',
+      styles: {
+        diory: { display: 'inline-block', width: '20em', height: '20em', backgroundColor: 'green', margin: '1em' },
+        text: { fontSize: '2em', fontFamily: 'sans-serif', color: 'white', textAlign: 'center', textShadow: '1px 1px green' },
+        image: { opacity: 0.6, filter: 'blur(5px)' }
+      }
+    }
+  }
+
+  convertDioriesToGridDiories(diories) {
+    let gridDiories = {}
+    diories.forEach(diory => {
+      gridDiories[parseInt(diory.id)] = this.convertDioryToGridDiory(diory)
+    })
+    console.log(gridDiories)
+    return gridDiories
   }
 
 }
@@ -77,3 +97,6 @@ function render() {
 }
 
 render()
+
+
+

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "start": "cp ./app/index.html ./dist && webpack && webpack-dev-server --port 4202 --content-base dist/ --inline --hot",
+    "start": "webpack && cp ./app/index.html ./dist && webpack-dev-server --port 4202 --content-base dist/ --inline --hot",
     "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "e2e": "tsc && webpack && jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "compile": "webpack"

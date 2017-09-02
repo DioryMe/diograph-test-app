@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Diory, DioryGrid } from 'diory-react-components'
 import { DiographStore } from "diograph-store"
 import { DiographAuthentication } from "diograph-authentication"
-import { SearchCreate, initializeTypeahead } from "./search-create"
+import { SearchCreate } from "./search-create"
 
 render()
 
@@ -42,9 +42,6 @@ function render() {
         </div>,
         document.getElementById('app')
       );
-
-      initializeTypeahead()
-
     })
   } catch(e) {
     console.log(e)

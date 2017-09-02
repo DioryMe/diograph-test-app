@@ -8,6 +8,10 @@ export class SearchCreate extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.initializeTypeahead()
+  }
+
   render() {
     return (
       <div id="search-create">
@@ -20,9 +24,7 @@ export class SearchCreate extends React.Component {
     )
   }
 
-}
-
-export function initializeTypeahead() {
+  initializeTypeahead() {
     var searchResults = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -80,5 +82,6 @@ export function initializeTypeahead() {
     $('#search-create').bind('typeahead:asynccancel', function() {
       $('#loading-icon').hide();
     });
+  }
 
 }

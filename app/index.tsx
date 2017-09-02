@@ -6,18 +6,23 @@ import { DiographAuthentication } from "diograph-authentication"
 import { SearchCreate } from "./search-create"
 
 class App extends React.Component {
-  diory
+  state
 
   constructor(props) {
     super(props)
+
     DiographStore.setAuthToken(DiographAuthentication.token);
 
+    this.state = {diory: {text: "COOOL"}, diories: {}}
+
+    this.loadDiories()
+  }
+
+  loadDiories() {
     DiographStore.getAllDiories().then((dioryData) => {
       if (dioryData.length < 1) { return; }
-
       dioryData = dioryData[0]
-      console.log(dioryData)
-      this.diory = {
+      const diory = {
         text: dioryData.name,
         image: 'https://gravatar.com/avatar/ff80f8f9bc52f1b79e468a41f2239001',
         styles: {
@@ -26,17 +31,23 @@ class App extends React.Component {
           image: { opacity: 0.6, filter: 'blur(5px)' }
         }
       }
-      this.render()
+      this.setState({diory: diory})
+      this.setState({diories: {
+        1: diory,
+        2: diory
+      }})
     })
   }
 
   render() {
-    console.log(this.diory)
+    let diory = this.state.diory
+    let diories = this.state.diories
     return (
       <div>
         <SearchCreate />
-        <h1>Grid</h1>
-        <Diory { ...this.diory } />
+        <h1>{diory.text}</h1>
+        <Diory { ...diory } />
+        <DioryGrid { ...diories } />
       </div>
     )
   }

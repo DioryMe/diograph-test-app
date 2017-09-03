@@ -4,15 +4,12 @@ import * as Bloodhound from "corejs-typeahead/dist/bloodhound";
 import "corejs-typeahead/dist/typeahead.jquery";
 
 export interface SearchInputFieldProps { onSearchResultsChange: any }
-export interface SearchInputFieldState { searchResults: any }
 
-export class SearchInputField extends React.Component<SearchInputFieldProps, SearchInputFieldState> {
-  onSearchResultsChange: any
-
+export class SearchInputField extends React.Component<SearchInputFieldProps, undefined> {
+  searchResults
   constructor(props) {
     super(props)
-    this.state = {searchResults: []}
-    this.onSearchResultsChange = props.onSearchResultsChange
+    this.searchResults = []
   }
 
   componentDidMount() {
@@ -56,12 +53,12 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, Sea
         source: searchResults,
         templates: {
           suggestion: function(value) {
-            that.state.searchResults.push(value.value)
-            that.onSearchResultsChange(that.state.searchResults)
+            that.searchResults.push(value.value)
+            that.props.onSearchResultsChange(that.searchResults)
             return "<span></span>"
           },
           empty: function() {
-            that.onSearchResultsChange(["No results"])
+            that.props.onSearchResultsChange(["No results"])
             return "<span></span>"
           }
         }

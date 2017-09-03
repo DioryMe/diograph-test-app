@@ -16,6 +16,8 @@ class App extends React.Component {
     this.state = {diory: {text: "COOOL"}, diories: {}}
 
     this.loadDiories()
+
+    this.putInFocus = this.putInFocus.bind(this);
   }
 
   loadDiories() {
@@ -53,6 +55,10 @@ class App extends React.Component {
 
   putInFocus(dioryId) {
     console.log(dioryId)
+    DiographStore.getDiory(dioryId).then(diory => {
+      this.setState({diory: this.convertDioryToGridDiory(diory)})
+    })
+
   }
 
   convertDioryToGridDiory(diory) {

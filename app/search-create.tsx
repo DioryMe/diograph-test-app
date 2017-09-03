@@ -2,8 +2,9 @@ import * as React from 'react';
 import { SearchInputField } from "./search-input-field"
 import { SearchResults } from "./search-results"
 
-export class SearchCreate extends React.Component {
-  state: any
+export interface SearchCreateState { searchResults: any }
+
+export class SearchCreate extends React.Component<undefined, SearchCreateState> {
 
   constructor(props) {
     super(props)

@@ -2,7 +2,7 @@ import * as React from "react"
 
 export interface SearchResultsProps { searchResults: Array<any> }
 
-export class SearchResults extends React.Component<SearchResultsProps, undefined> {
+export class SearchResults extends React.Component<{ searchResults: Array<any> }, undefined> {
 	searchResults
 
 	constructor(props) {

@@ -16,9 +16,9 @@ export class SearchResults extends React.Component<SearchResultsProps, undefined
     let searchResultsJSX = this.props.searchResults.map((result) => {
       return (
         <div className="search-result diory-element__element"
-          onClick={event => this.props.onFocusClick(result)}>
+          onClick={event => this.props.onFocusClick(result.id)}>
           <div className="diory-element__title">
-            {result}
+            {result.value}
           </div>
         </div>
       )

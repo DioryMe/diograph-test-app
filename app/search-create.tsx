@@ -24,7 +24,6 @@ export class SearchCreate extends React.Component<SearchCreateProps, SearchCreat
   }
 
   updateSearchResults(results) {
-    console.log(results)
     this.setState({searchResults: results})
   }
 

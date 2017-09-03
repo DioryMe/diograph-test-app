@@ -54,7 +54,7 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
       this.bloodHound.search(term, () => {}, datums => {
         let values
         if (datums.length > 0) {
-          values = datums.map(d => d.value)
+          values = datums
         } else {
           values = ["No results."]
         }

@@ -25,7 +25,7 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
         <div id='loading-icon'>
           <img src='loading.gif' />
         </div>
-        <div id="search-create__cancel" className='search-create__cancel'>X</div>
+        <div className='search-create__cancel' onClick={ () => { this.onInputChange("") }}>X</div>
       </div>
     )
   }
@@ -51,8 +51,13 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
     let that = this;
     this.setState({term: term})
     if (term.length >= 3) {      
-      this.bloodHound.search(term, () => {}, datums => {      
-        let values = datums.map(d => d.value)
+      this.bloodHound.search(term, () => {}, datums => {
+        let values
+        if (datums.length > 0) {
+          values = datums.map(d => d.value)
+        } else {
+          values = ["No results."]
+        } 
         that.props.onSearchResultsChange(values)
       });
     } else {

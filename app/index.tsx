@@ -43,12 +43,16 @@ class App extends React.Component {
     let diories = this.state.diories
     return (
       <div>
-        <SearchCreate />
+        <SearchCreate onFocusClick={this.putInFocus}/>
         <h1>{diory.text}</h1>
         <Diory { ...diory } />
         <DioryGrid { ...diories } />
       </div>
     )
+  }
+
+  putInFocus(dioryId) {
+    console.log(dioryId)
   }
 
   convertDioryToGridDiory(diory) {

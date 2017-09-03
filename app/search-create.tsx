@@ -3,8 +3,9 @@ import { SearchInputField } from "./search-input-field"
 import { SearchResults } from "./search-results"
 
 export interface SearchCreateState { searchResults: any }
+export interface SearchCreateProps { onFocusClick: any }
 
-export class SearchCreate extends React.Component<undefined, SearchCreateState> {
+export class SearchCreate extends React.Component<SearchCreateProps, SearchCreateState> {
 
   constructor(props) {
     super(props)
@@ -15,7 +16,9 @@ export class SearchCreate extends React.Component<undefined, SearchCreateState> 
     return (
       <div>
         <SearchInputField onSearchResultsChange={results => this.updateSearchResults(results)} />
-        <SearchResults searchResults={this.state.searchResults} />
+        <SearchResults 
+          searchResults={this.state.searchResults} 
+          onFocusClick={dioryId => this.props.onFocusClick(dioryId)}/>
       </div>
     )
   }

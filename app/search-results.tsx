@@ -1,6 +1,6 @@
 import * as React from "react"
 
-export interface SearchResultsProps { searchResults: Array<any> }
+export interface SearchResultsProps { searchResults: Array<any>, onFocusClick: any }
 
 export class SearchResults extends React.Component<SearchResultsProps, undefined> {
 
@@ -15,7 +15,8 @@ export class SearchResults extends React.Component<SearchResultsProps, undefined
 	renderSearchResults() {
 		let searchResultsJSX = this.props.searchResults.map((result) => {			
 	    return (
-	    	<div className="search-result diory-element__element">
+	    	<div className="search-result diory-element__element"
+	    		onClick={event => this.props.onFocusClick(result)}>
 		      <div className="diory-element__title">
 		        {result}
 		      </div>

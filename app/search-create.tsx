@@ -3,6 +3,8 @@ import * as $ from "jquery";
 import * as Bloodhound from "corejs-typeahead/dist/bloodhound";
 import "corejs-typeahead/dist/typeahead.jquery";
 
+import { SearchResults } from "./search-results"
+
 export class SearchCreate extends React.Component {
   constructor(props) {
     super(props)
@@ -12,14 +14,22 @@ export class SearchCreate extends React.Component {
     this.initializeTypeahead()
   }
 
+  // render() {
+  //   <SearchInputField />
+  //   <SearchResults />
+  // }
+
   render() {
     return (
-      <div id="search-create">
-        <input id="typeahead" className="typeahead" type="text" placeholder="Search for diories..." />
-        <div id='loading-icon'>
-          <img src='loading.gif' />
+      <div>
+        <div id="search-create">
+          <input id="typeahead" className="typeahead" type="text" placeholder="Search for diories..." />
+          <div id='loading-icon'>
+            <img src='loading.gif' />
+          </div>
+          <div id="search-create__cancel" className='search-create__cancel'>X</div>
         </div>
-        <div id="search-create__cancel" className='search-create__cancel'>X</div>
+        <SearchResults searchResults={[1,2,3]} />
       </div>
     )
   }

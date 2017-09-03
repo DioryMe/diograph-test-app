@@ -68,7 +68,6 @@ class App extends React.Component {
     diories.forEach(diory => {
       gridDiories[parseInt(diory.id)] = this.convertDioryToGridDiory(diory)
     })
-    console.log(gridDiories)
     return gridDiories
   }
 

@@ -18,7 +18,7 @@ export class SearchCreate extends React.Component<SearchCreateProps, SearchCreat
         <SearchInputField onSearchResultsChange={results => this.updateSearchResults(results)} />
         <SearchResults
           searchResults={this.state.searchResults}
-          onFocusClick={dioryId => this.props.onFocusClick(dioryId)}/>
+          onFocusClick={dioryId => this.onFocusClick(dioryId)}/>
       </div>
     )
   }
@@ -26,6 +26,11 @@ export class SearchCreate extends React.Component<SearchCreateProps, SearchCreat
   updateSearchResults(results) {
     console.log(results)
     this.setState({searchResults: results})
+  }
+
+  onFocusClick(dioryId) {
+    this.setState({searchResults: []})
+    this.props.onFocusClick(dioryId)
   }
 
 }

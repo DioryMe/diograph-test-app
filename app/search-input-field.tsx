@@ -3,9 +3,16 @@ import * as $ from "jquery";
 import * as Bloodhound from "corejs-typeahead/dist/bloodhound";
 import "corejs-typeahead/dist/typeahead.jquery";
 
-export class SearchInputField extends React.Component {
+export interface SearchInputFieldProps { onSearchResultsChange: any }
+export interface SearchInputFieldState { searchResults: any }
+
+export class SearchInputField extends React.Component<SearchInputFieldProps, SearchInputFieldState> {
+  onSearchResultsChange: any
+
   constructor(props) {
     super(props)
+    this.state = {searchResults: []}
+    this.onSearchResultsChange = props.onSearchResultsChange
   }
 
   componentDidMount() {
@@ -25,6 +32,7 @@ export class SearchInputField extends React.Component {
   }
 
   initializeTypeahead() {
+    let that = this;
     var searchResults = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -48,17 +56,13 @@ export class SearchInputField extends React.Component {
         source: searchResults,
         templates: {
           suggestion: function(value) {
-            return `
-              <div class="search-result diory-element__element">
-                  <div class="diory-element__title">
-                    ${value.value}
-                  </div>
-              </div>`
+            that.state.searchResults.push(value.value)
+            that.onSearchResultsChange(that.state.searchResults)
+            return "<span></span>"
           },
           empty: function() {
-            return `<div class="search-result diory-element__element">
-                      <div class="diory-element__title">No results.</div>
-                    </div>`
+            that.onSearchResultsChange(["No results"])
+            return "<span></span>"
           }
         }
     });

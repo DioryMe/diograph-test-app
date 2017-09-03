@@ -16,8 +16,8 @@ export class SearchCreate extends React.Component<SearchCreateProps, SearchCreat
     return (
       <div>
         <SearchInputField onSearchResultsChange={results => this.updateSearchResults(results)} />
-        <SearchResults 
-          searchResults={this.state.searchResults} 
+        <SearchResults
+          searchResults={this.state.searchResults}
           onFocusClick={dioryId => this.props.onFocusClick(dioryId)}/>
       </div>
     )

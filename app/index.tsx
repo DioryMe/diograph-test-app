@@ -100,6 +100,3 @@ function render() {
 }
 
 render()
-
-
-

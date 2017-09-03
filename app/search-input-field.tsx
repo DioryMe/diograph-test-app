@@ -19,7 +19,7 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
     return (
       <div id="search-create">
         <input className="typeahead"
-          value={this.state.term} 
+          value={this.state.term}
           onChange={event => this.onInputChange(event.target.value)}
           placeholder="Search for diories..." />
         <div id='loading-icon'>
@@ -50,14 +50,14 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
   onInputChange(term) {
     let that = this;
     this.setState({term: term})
-    if (term.length >= 3) {      
+    if (term.length >= 3) {
       this.bloodHound.search(term, () => {}, datums => {
         let values
         if (datums.length > 0) {
           values = datums.map(d => d.value)
         } else {
           values = ["No results."]
-        } 
+        }
         that.props.onSearchResultsChange(values)
       });
     } else {

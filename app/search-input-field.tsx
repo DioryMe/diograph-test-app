@@ -30,7 +30,7 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, und
 
   initializeTypeahead() {
     let that = this;
-    var searchResults = new Bloodhound({
+    var bloodhound = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       remote: {
@@ -44,45 +44,19 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, und
         }
       }
     });
+    
+    bloodhound.search("paikka", sync, async);
 
-    $('#search-create #typeahead').typeahead({
-        hint: false,
-        minLength: 3
-      }, {
-        display: 'value',
-        source: searchResults,
-        templates: {
-          suggestion: function(value) {
-            that.searchResults.push(value.value)
-            that.props.onSearchResultsChange(that.searchResults)
-            return "<span></span>"
-          },
-          empty: function() {
-            that.props.onSearchResultsChange(["No results"])
-            return "<span></span>"
-          }
-        }
-    });
+    function sync(datums) {
+      console.log('datums from `local`, `prefetch`, and `#add`');
+      console.log(datums);
+    }
 
-    // X click
-    $('#search-create__cancel').click(() => {
-      $('#typeahead').typeahead('val', '');
-    })
-
-    // Loading starts
-    $('#search-create').bind('typeahead:asyncrequest', function() {
-      $('#loading-icon').css('display', 'block');
-    });
-
-    // Loading ends
-    $('#search-create').bind('typeahead:asyncreceive', function() {
-      $('#loading-icon').hide();
-    });
-
-    // Loadinc cancelled (esc)
-    $('#search-create').bind('typeahead:asynccancel', function() {
-      $('#loading-icon').hide();
-    });
+    function async(datums) {
+      let values = datums.map(d => d.value)
+      console.log(values)
+      that.props.onSearchResultsChange(values)
+    }
   }
 
 }

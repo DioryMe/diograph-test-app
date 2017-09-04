@@ -56,7 +56,7 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
         if (datums.length > 0) {
           values = datums
         } else {
-          values = ["No results."]
+          values = [{value: "No results."}]
         }
         that.props.onSearchResultsChange(values)
       });

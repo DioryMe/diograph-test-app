@@ -13,7 +13,7 @@ class App extends React.Component {
 
     DiographStore.setAuthToken(DiographAuthentication.token);
 
-    this.state = {diory: {text: "COOOL"}, diories: {}}
+    this.state = {diory: {text: "No diories to show."}, diories: {}}
 
     this.loadDiories()
 
@@ -56,7 +56,6 @@ class App extends React.Component {
   }
 
   putInFocus(dioryId) {
-    console.log(dioryId)
     DiographStore.getDiory(dioryId).then(diory => {
       this.setState({diory: this.convertDioryToGridDiory(diory)})
     })
@@ -95,7 +94,7 @@ DiographAuthentication.onLogout = () => {
 
 function clear() {
   ReactDOM.render(
-    <div><p>No diories to show.</p></div>,
+    <div><p>Please authenticate.</p></div>,
     document.getElementById('app')
   );
 }

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "start": "webpack-dev-server --port 4202 --content-base dist/ --inline --hot",
+    "start": "webpack && cp ./app/index.html ./dist && webpack-dev-server --port 4202 --content-base dist/ --inline --hot",
     "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "e2e": "tsc && webpack && jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "compile": "webpack"
@@ -14,15 +14,18 @@
     "ts-loader": "*",
     "typescript": "*",
     "webpack": "*",
+    "webpack-dev-server": "*",
     "jasmine": "*",
     "@types/jasmine": "*",
     "@types/node": "*",
+    "@types/react": "^15.0.24",
     "selenium-webdriver": "*",
     "diograph-store": "*",
     "diograph-authentication": "*",
     "diograph-search-create": "*"
   },
   "dependencies": {
+    "classnames": "2.2.5",
     "diory-react-components": "^1.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"

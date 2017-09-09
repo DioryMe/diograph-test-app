@@ -11,6 +11,9 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, und
   constructor(props) {
     super(props)
     this.bloodHound = this.initializeBloodhound()
+  }
+
+  componentWillMount() {
     this.onInputChange(this.props.searchTerm)
   }
 

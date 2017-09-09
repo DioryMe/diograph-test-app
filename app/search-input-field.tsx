@@ -3,16 +3,15 @@ import * as $ from "jquery";
 import * as Bloodhound from "corejs-typeahead/dist/bloodhound";
 import "corejs-typeahead/dist/typeahead.jquery";
 
-export interface SearchInputFieldProps { onSearchResultsChange: any }
+export interface SearchInputFieldProps { onSearchResultsChange: any, onSearchTermChange: any, searchTerm: string }
 
-export class SearchInputField extends React.Component<SearchInputFieldProps, {term: any}> {
+export class SearchInputField extends React.Component<SearchInputFieldProps, undefined> {
   bloodHound
 
   constructor(props) {
     super(props)
     this.bloodHound = this.initializeBloodhound()
-    this.state = {term: "paikka"}
-    this.onInputChange(this.state.term)
+    this.onInputChange(this.props.searchTerm)
   }
 
   render() {
@@ -20,7 +19,7 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
       <div className="search-input-field">
         <style>{searchInputFieldStyles}</style>
         <input className="search-input-field__input"
-          value={this.state.term}
+          value={this.props.searchTerm}
           onChange={event => this.onInputChange(event.target.value)}
           placeholder="Search for diories..." />
         <div className='search-input-field__loading-icon'>
@@ -50,7 +49,7 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
 
   onInputChange(term) {
     let that = this;
-    this.setState({term: term})
+    this.props.onSearchTermChange(term)
     if (term.length >= 3) {
       this.bloodHound.search(term, () => {}, datums => {
         let values

@@ -17,15 +17,16 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
 
   render() {
     return (
-      <div id="search-create">
-        <input className="typeahead"
+      <div className="search-input-field">
+        <style>{searchInputFieldStyles}</style>
+        <input className="search-input-field__input"
           value={this.state.term}
           onChange={event => this.onInputChange(event.target.value)}
           placeholder="Search for diories..." />
-        <div id='loading-icon'>
+        <div className='search-input-field__loading-icon'>
           <img src='loading.gif' />
         </div>
-        <div className='search-create__cancel' onClick={ () => { this.onInputChange("") }}>X</div>
+        <div className='search-input-field__cancel' onClick={ () => { this.onInputChange("") }}>X</div>
       </div>
     )
   }
@@ -67,3 +68,32 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, {te
   }
 
 }
+
+let searchInputFieldStyles = `
+    .search-input-field {
+      position: relative;
+    }
+
+    .search-input-field__loading-icon {
+      position: absolute;
+      display: none;
+      top: 14px;
+      right: 60px;
+    }
+
+    .search-input-field__input {
+      line-height: 48px;
+      font-size: 36px;
+      width: 100%;
+    }
+
+    .search-input-field__cancel {
+      position: absolute;
+      top: 6px;
+      right: 16px;
+      color: gray;
+      font-size: 36px;
+      cursor: pointer;
+      font-family: Helvetica, sans-serif;
+    }
+`

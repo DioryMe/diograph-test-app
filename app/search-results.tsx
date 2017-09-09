@@ -15,11 +15,12 @@ export class SearchResults extends React.Component<SearchResultsProps, undefined
   renderSearchResults() {
     let searchResultsJSX = this.props.searchResults.map((result) => {
       return (
-        <div className="search-result diory-element__element"
+        <div className="search-result__element"
           onClick={event => this.props.onFocusClick(result.id)}>
-          <div className="diory-element__title">
+          <div className="search-result__title">
             {result.value}
           </div>
+          <style>{searchResultsStyles}</style>
         </div>
       )
     })
@@ -27,3 +28,35 @@ export class SearchResults extends React.Component<SearchResultsProps, undefined
   }
 
 }
+
+let searchResultsStyles = `
+  .search-result__element {
+    display: table;
+    table-layout: fixed;
+    margin: 3px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    border: 3px solid lightgray;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  .search-result__title {
+    display: table-cell;
+    text-align: center;
+    padding: 10px 5px;
+    width: 400px;
+  }
+
+  .search-result__action {
+    display: table-cell;
+    background-color: lightblue;
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+`

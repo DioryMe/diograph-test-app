@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as cx from 'classnames';
 import * as $ from "jquery";
 import * as Bloodhound from "corejs-typeahead/dist/bloodhound";
 import "corejs-typeahead/dist/typeahead.jquery";
@@ -7,6 +8,7 @@ export interface SearchInputFieldProps { onSearchResultsChange: any, onSearchTer
 
 export class SearchInputField extends React.Component<SearchInputFieldProps, undefined> {
   bloodHound
+  isLoading = false
 
   constructor(props) {
     super(props)
@@ -25,8 +27,8 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, und
           value={this.props.searchTerm}
           onChange={event => this.onInputChange(event.target.value)}
           placeholder="Search for diories..." />
-        <div className='search-input-field__loading-icon'>
-          <img src='loading.gif' />
+        <div className={cx({"search-input-field__loading-icon": true, "hidden": !this.isLoading})}>
+          <img src='http://diomber.herokuapp.com/images/loading-7c90298423b857a3296b19695231a5f4.gif' />
         </div>
         <div className='search-input-field__cancel' onClick={ () => { this.onInputChange("") }}>X</div>
       </div>
@@ -54,7 +56,9 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, und
     let that = this;
     this.props.onSearchTermChange(term)
     if (term.length >= 3) {
+      this.isLoading = true
       this.bloodHound.search(term, () => {}, datums => {
+        this.isLoading = false
         let values
         if (datums.length > 0) {
           values = datums
@@ -72,30 +76,35 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, und
 }
 
 let searchInputFieldStyles = `
-    .search-input-field {
-      position: relative;
-    }
+  .search-input-field {
+    position: relative;
+  }
 
-    .search-input-field__loading-icon {
-      position: absolute;
-      display: none;
-      top: 14px;
-      right: 60px;
-    }
+  .search-input-field__loading-icon {
+    position: absolute;
+    display: block;
+    top: 22px;
+    right: 60px;
 
-    .search-input-field__input {
-      line-height: 48px;
-      font-size: 36px;
-      width: 100%;
-    }
+  }
 
-    .search-input-field__cancel {
-      position: absolute;
-      top: 6px;
-      right: 16px;
-      color: gray;
-      font-size: 36px;
-      cursor: pointer;
-      font-family: Helvetica, sans-serif;
-    }
+  .search-input-field__input {
+    line-height: 48px;
+    font-size: 36px;
+    width: 100%;
+  }
+
+  .search-input-field__cancel {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    color: gray;
+    font-size: 36px;
+    cursor: pointer;
+    font-family: Helvetica, sans-serif;
+  }
+
+  .hidden {
+    display: none
+  }
 `

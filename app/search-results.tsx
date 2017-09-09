@@ -16,6 +16,7 @@ export class SearchResults extends React.Component<SearchResultsProps, undefined
     let searchResultsJSX = this.props.searchResults.map((result) => {
       return (
         <div className="search-result__element"
+          key={result.id}
           onClick={event => this.props.onFocusClick(result.id)}>
           <div className="search-result__title">
             {result.value}

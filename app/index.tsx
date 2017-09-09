@@ -40,14 +40,12 @@ class App extends React.Component {
     })
   }
 
-  // <SearchCreate onFocusClick={this.putInFocus}/>
-
   render() {
     let diory = this.state.diory
     let diories = this.state.diories
     return (
       <div>
-        <SearchCreate />
+        <SearchCreate onFocusClick={this.putInFocus}/>
         <h1>{diory.text}</h1>
         <Diory { ...diory } />
         <DioryGrid { ...diories } />

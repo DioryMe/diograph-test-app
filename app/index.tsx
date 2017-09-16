@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Diory, DioryGrid } from 'diory-react-components'
 import { DiographStore } from "diograph-store"
 import { DiographAuthentication } from "diograph-authentication"
-import { SearchCreate } from "./search-create"
+import { DiographSearchCreate } from "diograph-search-create"
 
 class App extends React.Component {
   state
@@ -40,14 +40,13 @@ class App extends React.Component {
     })
   }
 
-  // <SearchCreate onFocusClick={this.putInFocus}/>
 
   render() {
     let diory = this.state.diory
     let diories = this.state.diories
     return (
       <div>
-        <SearchCreate />
+        <DiographSearchCreate onFocusClick={this.putInFocus}/>
         <h1>{diory.text}</h1>
         <Diory { ...diory } />
         <DioryGrid { ...diories } />

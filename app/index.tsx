@@ -11,6 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
+    // DiographAuthentication.isProduction = false
     DiographStore.setAuthToken(DiographAuthentication.token);
 
     this.state = {diory: {text: "No diories to show."}, diories: {}}

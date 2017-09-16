@@ -9870,6 +9870,7 @@ var App = (function (_super) {
     __extends(App, _super);
     function App(props) {
         var _this = _super.call(this, props) || this;
+        diograph_authentication_1.DiographAuthentication.isProduction = false;
         diograph_store_1.DiographStore.setAuthToken(diograph_authentication_1.DiographAuthentication.token);
         _this.state = { diory: { text: "No diories to show." }, diories: {} };
         _this.loadDiories();
@@ -26748,6 +26749,7 @@ var DiographAuthentication = exports.DiographAuthentication = function DiographA
     _classCallCheck(this, DiographAuthentication);
 };
 
+DiographAuthentication.isProduction = true;
 DiographAuthentication.onLogin = function () {};
 DiographAuthentication.onLogout = function () {};
 
@@ -26783,6 +26785,7 @@ var DiographLogin = function (_HTMLElement) {
                     self.showLoggedIn();
                     var inputFieldValue = document.getElementById("diograph-token-input").value;
                     localStorage.setItem("token", inputFieldValue);
+                    localStorage.setItem("endpoint", DiographAuthentication.isProduction ? "http://diory-server.herokuapp.com/v1" : "http://localhost:3000/v1");
                     self.readAndRefreshToken();
                     document.getElementById("diograph-token-input").value = "";
                     DiographAuthentication.onLogin();
@@ -26918,11 +26921,11 @@ var SearchInputField = (function (_super) {
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
-                url: 'http://diory-server.herokuapp.com/v1/search',
+                url: localStorage.getItem("endpoint") + "/search",
                 prepare: function (query, settings) {
                     settings.url = settings.url + '?q=' + query,
                         settings.headers = {
-                            "Authorization": "test-token"
+                            "Authorization": localStorage.getItem("token")
                         };
                     return settings;
                 }
@@ -26942,7 +26945,7 @@ var SearchInputField = (function (_super) {
                     values = datums;
                 }
                 else {
-                    values = [{ value: "No results." }];
+                    values = [{ id: 1, value: "No results." }];
                 }
                 that.props.onSearchResultsChange(values);
             });

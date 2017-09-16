@@ -38,11 +38,11 @@ export class SearchInputField extends React.Component<SearchInputFieldProps, und
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       remote: {
-        url: 'http://diory-server.herokuapp.com/v1/search',
+        url: localStorage.getItem("endpoint") + "/search",
         prepare: function(query, settings) {
           settings.url = settings.url + '?q=' + query,
           settings.headers = {
-            "Authorization": "test-token"
+            "Authorization": localStorage.getItem("token")
           };
           return settings;
         }

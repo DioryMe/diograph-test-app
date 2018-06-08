@@ -11,23 +11,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "ts-loader": "*",
-    "typescript": "*",
-    "webpack": "*",
-    "webpack-dev-server": "*",
-    "jasmine": "*",
-    "@types/jasmine": "*",
-    "@types/node": "*",
-    "@types/react": "^15.0.24",
-    "selenium-webdriver": "*",
+    "ts-loader": "2.3.7",
+    "typescript": "2.5.2",
+    "webpack": "3.6.0",
+    "webpack-dev-server": "2.9.1",
+    "jasmine": "2.8.0",
+    "@types/jasmine": "2.6.0",
+    "@types/node": "8.0.28",
+    "@types/react": "15.6.2",
+    "selenium-webdriver": "3.5.0",
     "diograph-store": "*",
     "diograph-authentication": "*",
     "diograph-search-create": "*"
   },
   "dependencies": {
     "classnames": "2.2.5",
-    "diory-react-components": "^1.0.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "diory-react-components": "1.1.1",
+    "react": "15.6.1",
+    "react-dom": "15.6.1"
   }
 }

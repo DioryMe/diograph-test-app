@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "start": "webpack && cp ./app/index.html ./dist && webpack-dev-server --port 4202 --content-base dist/ --inline --hot",
-    "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "e2e": "tsc && webpack && jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "compile": "webpack"
+    "start": "npx webpack && cp ./app/index.html ./dist && webpack-dev-server --port 4202 --content-base dist/ --inline --hot",
+    "test": "npx tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "e2e": "npx tsc && webpack && jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "compile": "npx webpack"
   },
   "author": "",
   "license": "ISC",

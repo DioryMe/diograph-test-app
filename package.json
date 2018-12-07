@@ -5,8 +5,8 @@
   "scripts": {
     "start": "npx webpack && cp ./app/index.html ./dist && npx webpack-dev-server",
     "test": "npx tsc && npx jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "e2e": "npx tsc && npx webpack && npx jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "compile": "npx webpack"
+    "compile": "npx webpack",
+    "deploy": "npm run compile && surge ./dist diory-test-app.surge.sh"
   },
   "author": "",
   "license": "ISC",

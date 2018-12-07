@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "start": "npx webpack && cp ./app/index.html ./dist && npx webpack-dev-server",
-    "test": "rm -r ./dist && npx tsc && npx jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "compile": "rm -r ./dist && npx webpack",
+    "test": "rm -r ./dist; npx tsc && npx jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "compile": "npx webpack",
     "deploy": "npm run compile && surge ./dist diory-test-app.surge.sh"
   },
   "author": "",
@@ -23,12 +23,10 @@
     "selenium-webdriver": "3.5.0",
     "diograph-store": "*",
     "diograph-authentication": "*",
-    "diograph-search-create": "*"
-  },
-  "dependencies": {
-    "classnames": "2.2.5",
-    "diory-react-components": "1.1.1",
-    "react": "15.6.1",
-    "react-dom": "15.6.1"
+    "diograph-search-create": "*",
+    "diory-react-components": "*",
+    "react": "*",
+    "react-dom": "*",
+    "clean-webpack-plugin": "^1.0.0"
   }
 }

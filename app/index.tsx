@@ -29,8 +29,11 @@ class App extends React.Component {
       const gridDiories = {
         text: 'This is a grid:',
         image: 'https://gravatar.com/avatar/ff80f8f9bc52f1b79e468a41f2239001',
-        styles: {
-          text: { fontSize: '2em', fontFamily: 'sans-serif', color: 'white' }
+        style: {
+          backgroundColor: 'blue',
+          fontFamily: 'arial',
+          color: 'white',
+          text: { fontSize: '2em', width: '100%' }
         },
         diorys: this.convertDioriesToGridDiories(diories)
       }

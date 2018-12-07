@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "start": "npx webpack && cp ./app/index.html ./dist && npx webpack-dev-server",
-    "test": "npx tsc && npx jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "compile": "npx webpack",
+    "test": "rm -r ./dist && npx tsc && npx jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "compile": "rm -r ./dist && npx webpack",
     "deploy": "npm run compile && surge ./dist diory-test-app.surge.sh"
   },
   "author": "",
